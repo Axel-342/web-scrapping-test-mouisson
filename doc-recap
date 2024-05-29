@@ -1,0 +1,24 @@
+1.
+
+Fonction scrape_page :
+Prend une URL en entrée.
+Envoie une requête à l'URL et analyse le contenu HTML à l'aide de BeautifulSoup.
+Extrait le texte de la citation et les balises de chaque citation de la page.
+Renvoie une liste de dictionnaires, chacun contenant le texte et les balises d'une citation.
+
+URL :
+Une liste d'URL pour les 5 premières pages du site Web de citation.
+
+Balises souhaitées :
+Un ensemble contenant les balises à filtrer par : "love", "inspirational", "life" et "humor".
+
+Raclage et filtrage :
+Parcourt la liste des URL, en scrappant chaque page.
+Filtre les guillemets pour ne conserver que ceux contenant au moins une des balises souhaitées.
+
+DataFrame et CSV :
+Crée un Pandas DataFrame à partir des citations filtrées.
+Écrit le DataFrame dans un fichier CSV nommé results.csv.
+
+
+2.
