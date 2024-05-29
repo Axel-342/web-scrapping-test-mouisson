@@ -2,17 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-# Function to login and get the token
 def login_and_get_token():
     login_url = "https://quotes.toscrape.com/login"
     
-    # Initial request to get the CSRF token
     session = requests.Session()
     initial_response = session.get(login_url)
     soup = BeautifulSoup(initial_response.content, 'html.parser')
     csrf_token = soup.find('input', {'name': 'csrf_token'})['value']
 
-    # Login payload with CSRF token
     payload = {
         'username': 'test',
         'password': 'test',
@@ -27,13 +24,11 @@ def login_and_get_token():
 
 session, token = login_and_get_token()
 
-# Write token to results.csv if it does not exist or append it otherwise
 with open('results.csv', 'a') as file:
     file.write(f"token\n{token}\n")
 
 print("Token has been appended to 'results.csv'.")
 
-# Function to scrape quotes with a specific tag
 def scrape_tagged_quotes(session, tag, pages=2):
     base_url = f"https://quotes.toscrape.com/tag/{tag}/page/{{}}/"
     quotes = []
@@ -54,11 +49,9 @@ def scrape_tagged_quotes(session, tag, pages=2):
     
     return quotes
 
-# Scrape the first 2 pages of quotes with the 'books' tag
 tag = 'books'
 book_quotes = scrape_tagged_quotes(session, tag, pages=2)
 
-# Function to filter out duplicate quotes
 def filter_duplicates(quotes):
     seen = set()
     filtered_quotes = []
@@ -69,10 +62,8 @@ def filter_duplicates(quotes):
             filtered_quotes.append(quote)
     return filtered_quotes
 
-# Filter out duplicate quotes
 unique_book_quotes = filter_duplicates(book_quotes)
 
-# Append quotes to results.csv
 df_quotes = pd.DataFrame(unique_book_quotes, columns=['text', 'tags'])
 df_quotes.to_csv('results.csv', mode='a', index=False, header=False)
 

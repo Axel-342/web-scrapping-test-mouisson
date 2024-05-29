@@ -24,12 +24,12 @@ Crée un Pandas DataFrame à partir des citations filtrées.
 2.
 
 Se connecter au site et récupérer le token:
-Code : login_and_get_tokenfonction.
+Code : login_and_get_token fonction.
 Description: Utilise une session pour se connecter au site en envoyant une requête POST avec les informations de connexion. Récupère le token de la réponse et retourne la session et le token.
 Sortie: Le token est écrit dans results.csv.
 
 Scraper les deux premières pages de citations avec le tag 'books':
-Code : scrape_tagged_quotesfonction.
+Code : scrape_tagged_quotes fonction.
 Description: Envoie des requêtes GET pour récupérer les pages contenant des citations avec le tag books. Extrait les citations et leurs tags de la réponse HTML.
 Sortie: Les citations sont stockées dans une liste book_quotes.
 
